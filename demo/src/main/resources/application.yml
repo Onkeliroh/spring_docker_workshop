@@ -8,3 +8,9 @@ management:
 endpoints:
   beans:
     sensitive: false
+
+demo:
+  greeting:
+    target:
+      host: localhost
+      port: 8081
