@@ -1,2 +1,3 @@
-# spring_docker_workshop
-This repository is meant to be used as a resource accompanied by a workshop.
+# Spring & Docker Workshop
+
+This repository hold a demo application meant to be references in a workshop about spring and docker.
