@@ -5,12 +5,8 @@ management:
         include: '*'
     enabled-by-default: true
 
-endpoints:
-  beans:
-    sensitive: false
-
 demo:
   greeting:
     target:
-      host: localhost
-      port: 8081
+#      host: localhost
+#      port: 8081
