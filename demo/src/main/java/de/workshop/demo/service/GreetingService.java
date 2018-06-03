@@ -12,8 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-Ø
-
 @ConditionalOnProperty(prefix = "demo.greeting.target", name = {"host", "port"})
 @Component
 public class GreetingService {
