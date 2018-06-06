@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  demo:
+    labels:
+      traefik.docker.network: demo
+      traefik.protocol: http
+      traefik.port: 80
+      traefik.backend.healthcheck.path: /actuator/health
+      traefik.backend.healthcheck.port: 8080
+      traefik.backend.healthcheck.interval: 1s
+    build:
+      context: .
+    image: demo:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - demo
+  echo:
+    labels:
+      traefik.enable: false
+    image: kennship/http-echo:latest
+    ports:
+      - "8081:3000"
+    networks:
+      - demo
+  reverse-proxy:
+      image: traefik
+      command: --api --docker # Enables the web UI and tells Træfik to listen to docker
+      ports:
+        - "80:80"     # The HTTP port
+        - "8082:8080" # The Web UI (enabled by --api)
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker event
+      networks:
+        - demo
+
+networks:
+  demo:
