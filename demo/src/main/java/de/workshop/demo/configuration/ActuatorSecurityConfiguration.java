@@ -23,11 +23,13 @@ public class ActuatorSecurityConfiguration extends WebSecurityConfigurerAdapter 
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.requiresChannel().anyRequest().requiresSecure().and()//
-				.authorizeRequests().antMatchers("/actuator/**").hasRole("ADMIN").and()//
-				.authorizeRequests().antMatchers("/hello").permitAll().and()//
-				.formLogin().permitAll().and()//
-				.logout().permitAll();//
+		http//
+				.authorizeRequests().antMatchers("/*").permitAll();
+//				.requiresChannel().anyRequest().requiresSecure().and()//
+//				.authorizeRequests().antMatchers("/actuator/**").hasAnyRole("USER", "ADMIN").and()//
+//				.authorizeRequests().antMatchers("/hello").permitAll().and()//
+//				.formLogin().permitAll().and()//
+//				.logout().permitAll();//
 	}
 
 	@Override
