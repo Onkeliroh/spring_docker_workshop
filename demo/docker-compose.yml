@@ -12,18 +12,25 @@ services:
     build:
       context: .
     image: demo:latest
+    container_name: demo
     ports:
       - "8080:8080"
+    environment: 
+      DEMO_GREETING_TARGET_HOST: localhost
     networks:
-      - demo
+      - demonetwork
+
   echo:
     labels:
       traefik.enable: false
     image: kennship/http-echo:latest
+    container_name: echo
     ports:
       - "8081:3000"
     networks:
-      - demo
+      - demonetwork
+
+  # $Env:COMPOSE_CONVERT_WINDOWS_PATHS=1
   reverse-proxy:
       image: traefik
       command: --api --docker # Enables the web UI and tells Træfik to listen to docker
@@ -33,7 +40,7 @@ services:
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker event
       networks:
-        - demo
+        - demonetwork
 
 networks:
-  demo:
+  demonetwork:
