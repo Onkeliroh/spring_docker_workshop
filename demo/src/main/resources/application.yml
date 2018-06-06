@@ -13,12 +13,13 @@ management:
       key-store-password: 123456
     port: 8443
 
-endpoints:
-  beans:
-    sensitive: false
-
 demo:
   greeting:
     target:
 #      host: localhost
 #      port: 8081
+
+spring:
+  devtools:
+    livereload:
+      enabled: true
