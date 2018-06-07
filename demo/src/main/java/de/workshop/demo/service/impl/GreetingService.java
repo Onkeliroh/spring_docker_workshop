@@ -1,5 +1,6 @@
-package de.workshop.demo.service;
+package de.workshop.demo.service.impl;
 
+import de.workshop.demo.service.IGreeterSevice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +15,26 @@ import java.net.URI;
 
 @ConditionalOnProperty(prefix = "demo.greeting.target", name = {"host", "port"})
 @Component
-public class GreetingService {
+public class GreetingService implements IGreeterSevice {
 
 	private final String host;
 	private final String port;
 
-	Logger log;
+	private Logger log;
+	private RestTemplate restTemplate;
 
 	@Autowired
-	public GreetingService(@Value("${demo.greeting.target.host}") String host, @Value("${demo.greeting.target.port}") String port) {
+	public GreetingService(@Value("${demo.greeting.target.host}") String host, @Value("${demo.greeting.target.port}") String port, RestTemplate restTemplate) {
 		this.host = host;
 		this.port = port;
+		this.restTemplate = restTemplate;
 
 		log = LoggerFactory.getLogger(this.getClass());
 	}
 
 	@Scheduled(fixedRate = 1000)
-	public void greetTheNeighbor() {
-		RestTemplate restTemplate = new RestTemplate();
+	@Override
+	public void greet() {
 		URI uri = UriComponentsBuilder.newInstance().scheme("http").host(host).port(port).path("/").build().toUri();
 		restTemplate.postForLocation(uri, "Hello");
 

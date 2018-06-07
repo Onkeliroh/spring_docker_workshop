@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  spring-boot-admin:
+    container_name: spring-boot-admin
+    ports:
+      - "8123:8123"
+    image: onkeliroh/spring-boot-admin-server:2.0.0
+    build:
+      context: .

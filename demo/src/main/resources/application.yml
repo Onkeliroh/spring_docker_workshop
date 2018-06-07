@@ -14,7 +14,14 @@ demo:
 #      host: localhost
 #      port: 8081
 
+
 spring:
-  devtools:
-    livereload:
-      enabled: true
+  boot:
+    admin:
+      client:
+
+        url: "http://localhost:8123"
+#        enabled: true
+        instance:
+          health-url: "http://localhost:8080/actuator/health"
+

@@ -21,6 +21,14 @@ services:
       - "8081:3000"
     networks:
       - demonetwork
+  
+  admin:
+    image: aetas/spring-boot-admin-docker:1.4.1
+    container_name: spring_boot_admin
+    ports:
+      - "8123:8090"
+    networks: 
+      - demonetwork
 
 networks:
   demonetwork:
