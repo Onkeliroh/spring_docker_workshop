@@ -11,6 +11,7 @@ services:
     environment:
       DEMO_GREETING_TARGET_HOST: echo
       DEMO_GREETING_TARGET_PORT: 3000
+      SPRING_BOOT_ADMIN_CLIENT_URL: "http://admin:8123"
     networks:
       - demonetwork
 
@@ -23,10 +24,10 @@ services:
       - demonetwork
   
   admin:
-    image: aetas/spring-boot-admin-docker:1.4.1
+    image: onkeliroh/spring-boot-admin-server:2.0.0
     container_name: spring_boot_admin
     ports:
-      - "8123:8090"
+      - "8123:8123"
     networks: 
       - demonetwork
 

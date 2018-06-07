@@ -19,9 +19,5 @@ spring:
   boot:
     admin:
       client:
-
         url: "http://localhost:8123"
-#        enabled: true
-        instance:
-          health-url: "http://localhost:8080/actuator/health"
 
