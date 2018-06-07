@@ -16,7 +16,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DEMO_GREETING_TARGET_HOST: localhost
+      DEMO_GREETING_TARGET_HOST: echo
+      DEMO_GREETING_TARGET_PORT: 3000
     networks:
       - demonetwork
 
@@ -31,16 +32,16 @@ services:
       - demonetwork
 
   # $Env:COMPOSE_CONVERT_WINDOWS_PATHS=1
-  reverse-proxy:
-      image: traefik
-      command: --api --docker # Enables the web UI and tells Træfik to listen to docker
-      ports:
-        - "80:80"     # The HTTP port
-        - "8082:8080" # The Web UI (enabled by --api)
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker event
-      networks:
-        - demonetwork
+#  reverse-proxy:
+#      image: traefik
+#      command: --api --docker # Enables the web UI and tells Træfik to listen to docker
+#      ports:
+#        - "80:80"     # The HTTP port
+#        - "8082:8080" # The Web UI (enabled by --api)
+#      volumes:
+#        - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker event
+#      networks:
+#        - demonetwork
 
 networks:
   demonetwork:
