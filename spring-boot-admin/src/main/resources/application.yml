@@ -1,2 +1,8 @@
 server:
   port: 8123
+spring:
+  security:
+    user:
+      name: admin
+      password: 123456
+      roles: ADMIN

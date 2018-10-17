@@ -20,4 +20,6 @@ spring:
     admin:
       client:
         url: "http://localhost:8123"
+        username: admin
+        password: 123456
 

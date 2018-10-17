@@ -8,5 +8,5 @@ ADD target/demo.jar demo.jar
 
 ENV JVM_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
 
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar demo.jar"]
-CMD ["-Xms500m"]
+ENTRYPOINT ["sh", "-c", "java $JVM_OPTS -jar demo.jar"]
+CMD ["-Xmx100Md"]
